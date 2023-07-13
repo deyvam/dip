@@ -1,0 +1,18 @@
+import cv2
+import numpy as np
+path=r'C:\Users\91789\OneDrive\Desktop\DIP_Lab\ss28.jpeg'
+# Read the image
+img = cv2.imread(path)
+height,width=img.shape[:2]
+centre_x,centre_y=int(width/2),int(height/2)
+lu_img=img[0:centre_y,0:centre_x]
+ru_img=img[0:centre_y,centre_x:width]
+ll_img=img[centre_y:height,0:centre_x]
+rl_img=img[centre_y:height,centre_x:width]
+# Display the four quadrants
+cv2.imshow('Left Upper', lu_img)
+cv2.imshow('Right Upper', ru_img)
+cv2.imshow('Left Lower', ll_img)
+cv2.imshow('Right Lower', rl_img)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
