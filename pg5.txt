@@ -1,0 +1,22 @@
+import numpy as np
+import cv2
+image = cv2.imread("images.jpg")
+gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+blur=cv2.GaussianBlur(gray,(3,3),0)
+edges=cv2.Canny(blur,50,150)
+sobelx=cv2.Sobel(blur, cv2.CV_64F,1,0,ksize=3)
+sobely=cv2.Sobel(blur, cv2.CV_64F,0,1,ksize=3)
+mag=np.sqrt(sobelx**2+sobely**2)
+mag=np.uint8(mag)
+cv2.namedWindow('Original image',cv2.WINDOW_NORMAL)
+cv2.resizeWindow('Original image',300,300)
+cv2.namedWindow('Edges',cv2.WINDOW_NORMAL)
+cv2.resizeWindow('Edges',300,300)
+cv2.namedWindow('Texture',cv2.WINDOW_NORMAL)
+cv2.resizeWindow('Texture',300,300)
+
+cv2.imshow('Original image',image)
+cv2.imshow('Edges',edges)
+cv2.imshow('Textures',mag)
+cv2.waitKey(0)
+cv2.destroyAllWindows()

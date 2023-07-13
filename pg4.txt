@@ -1,0 +1,18 @@
+import cv2
+import numpy as np
+image = cv2.imread(r"C:\Users\91789\OneDrive\Desktop\DIP_Lab\download.png", cv2.IMREAD_GRAYSCALE)
+kernel = np.ones((5, 5), np.uint8)
+erosion_type=cv2.MORPH_RECT
+erosion = cv2.erode(image, kernel, iterations=1)
+# Subtract the eroded image from the original image
+subtracted = cv2.subtract(image, erosion)
+cv2.imshow("Original Image", image)
+cv2.imshow("Eroded_image", erosion)
+cv2.imshow("Subtracted_image",subtracted)
+
+dilation = cv2.dilate(image, kernel, iterations=1)
+subtracted = cv2.subtract(image, dilation)
+cv2.imshow("Dilated_image", dilation)
+cv2.imshow("Subtracted_image",subtracted)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
